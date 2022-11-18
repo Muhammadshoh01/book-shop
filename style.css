@@ -1,0 +1,58 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+}
+.section1 {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.catalog-books {
+	display: flex;
+	gap: 20px;
+}
+.catalog-author {
+	padding-top: 20px;
+}
+
+.catalog-title {
+	padding: 30px 0;
+	text-align: center;
+}
+.catalog-buttons {
+	margin-top: 70px;
+	display: flex;
+	gap: 15px;
+	/* padding: 10px; */
+}
+
+.showBtn button,
+.addBtn button {
+	background: transparent;
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+}
+.showBtn button:hover,
+.addBtn button:hover {
+	background-color: rgb(118, 118, 184);
+	color: white;
+}
+
+.section2 {
+	width: 50%;
+}
+
+.order-title {
+	padding: 30px 0;
+	text-align: center;
+}

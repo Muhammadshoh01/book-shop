@@ -31,6 +31,9 @@ body {
 	display: flex;
 	gap: 20px;
 }
+.catalog {
+	position: relative;
+}
 .book-catalog-title,
 .order-book-title {
 	text-align: center;
@@ -114,4 +117,30 @@ body {
 .order-total a:hover {
 	background-color: white;
 	color: rgb(3, 3, 192);
+}
+
+.info-container {
+	/* position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%; */
+	position: absolute;
+	background-color: rgb(28, 235, 173);
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+}
+.info-title {
+	font-weight: bold;
+	font-size: 25px;
+	padding-bottom: 25px;
+}
+.info-close {
+	padding: 5px;
+	background: transparent;
+	cursor: pointer;
+	margin-top: 5px;
 }

@@ -1,108 +1,175 @@
-// Book Catalog section
-let bookCatalog = document.createElement('section')
-bookCatalog.className = 'section1'
+// project-intro
+const projectIntro = document.createElement('div')
+projectIntro.classList.add('project-intro')
+document.body.append(projectIntro)
+// project intro image
+const projectIntroImage = document.createElement('img')
+projectIntroImage.setAttribute('src', './images/bookshop image.jpg')
+projectIntro.append(projectIntroImage)
+// project intro title
+const projectIntroTitle = document.createElement('h1')
+projectIntroTitle.innerHTML = 'Welcome to amazing book shop!'
+projectIntro.append(projectIntroTitle)
 
-// // show button
-// let showBtn = document.createElement('div')
-// showBtn.innerHTML = '<button>Show More</button>'
-// showBtn.className = 'showBtn'
+// sections
+const sections = document.createElement('div')
+sections.classList.add('sections')
+document.body.append(sections)
 
-// // add button
-// let addBtn = document.createElement('div')
-// addBtn.innerHTML = '<button>Add to bag</button>'
-// addBtn.className = 'addBtn'
-function addBooks(id) {
-	console.log(id)
+// section1
+const section1 = document.createElement('div')
+section1.classList.add('section-1')
+sections.append(section1)
+// book catalog title
+const bookCatalogTitle = document.createElement('h2')
+bookCatalogTitle.classList.add('book-catalog-title')
+bookCatalogTitle.innerHTML = 'Book Catalog'
+section1.append(bookCatalogTitle)
+// catalog container
+const catalogContainer = document.createElement('div')
+catalogContainer.classList.add('catalog-container')
+section1.append(catalogContainer)
+
+function updateDOM() {
+	bookArray.forEach(book => {
+		// catalog
+		const catalog = document.createElement('div')
+		catalog.classList.add('catalog')
+		// catalog image
+		const catalogImage = document.createElement('img')
+		catalogImage.src = book.imageLink
+		catalogImage.title = book.title
+		// catalog data
+		const catalogData = document.createElement('div')
+		catalogData.classList.add('catalog-data')
+		// catalog info
+		const catalogInfo = document.createElement('div')
+		catalogInfo.classList.add('catalog-info')
+		// catalog buttons
+		const catalogButtons = document.createElement('div')
+		catalogButtons.classList.add('catalog-buttons')
+		// catalog author
+		const catalogAuthor = document.createElement('h4')
+		catalogAuthor.classList.add('catalog-author')
+		catalogAuthor.textContent = book.author
+		// catalog title
+		const catalogTitle = document.createElement('h3')
+		catalogTitle.classList.add('catalog-title')
+		catalogTitle.textContent = book.title
+		// catalog price
+		const catalogPrice = document.createElement('h4')
+		catalogPrice.classList.add('catalog-price')
+		catalogPrice.textContent = 'Price: ' + '$' + book.price
+		// show more button
+		const showBtn = document.createElement('button')
+		showBtn.classList.add('show-more')
+		showBtn.textContent = 'Show more'
+		// add to bag button
+		const addBtn = document.createElement('button')
+		addBtn.classList.add('add-bag')
+		addBtn.textContent = 'Add to bag'
+		addBtn.addEventListener('click', add.bind(null, book.id))
+
+		catalog.append(catalogImage, catalogData)
+		catalogData.append(catalogInfo, catalogButtons)
+		catalogInfo.append(catalogAuthor, catalogTitle, catalogPrice)
+		catalogButtons.append(showBtn, addBtn)
+		catalogContainer.append(catalog)
+	})
 }
-function showBooks(data) {
-	// Book Catalog title
-	let bookTitle = document.createElement('h2')
-	bookTitle.innerHTML = 'Book Catalog'
-	bookTitle.className = 'catalog-title'
-	bookCatalog.prepend(bookTitle)
 
-	//  Demonstrating books
-	for (let book of data) {
-		let books = document.createElement('div')
-		books.className = 'catalog-books'
+// section 2
+const section2 = document.createElement('div')
+section2.classList.add('section-2')
+sections.append(section2)
+// order book title
+const orderBookTitle = document.createElement('h2')
+orderBookTitle.classList.add('order-book-title')
+orderBookTitle.innerHTML = 'Order books'
+section2.append(orderBookTitle)
+// order container
+const orderContainer = document.createElement('div')
+orderContainer.classList.add('order-container')
+section2.append(orderContainer)
+// order total
+const totalOrder = document.createElement('div')
+totalOrder.classList.add('order-total')
+section2.append(totalOrder)
 
-		// book imagelink
-		let bookImageLink = document.createElement('img')
-		bookImageLink.setAttribute('src', book.imageLink)
+// order total p
+let count = 0
+const orderCost = document.createElement('p')
+orderCost.textContent = `Total: $${count}`
+const orderPage = document.createElement('a')
+orderPage.textContent = 'Confirmation order'
+orderPage.href = './order.html'
+orderPage.target = '_blank'
+totalOrder.append(orderCost, orderPage)
 
-		let ImageWrapper = document.createElement('div')
-		ImageWrapper.className = 'catalog-image'
+// api url
+const apiUrl = './books.json'
+let bookArray = []
 
-		ImageWrapper.appendChild(bookImageLink)
-		books.appendChild(ImageWrapper)
+function add(id) {
+	bookArray.forEach(book => {
+		if (book.id == id) {
+			updateOrder(book)
+		}
+	})
+}
 
-		// Book author
-		let bookAuthor = document.createElement('h3')
-		bookAuthor.innerHTML = book.author
-		bookAuthor.className = 'catalog-author'
+function updateOrder(book) {
+	// order
+	const order = document.createElement('div')
+	order.classList.add('order')
+	// order image
+	const orderImage = document.createElement('img')
+	orderImage.src = book.imageLink
+	orderImage.title = book.title
+	// order data
+	const orderData = document.createElement('div')
+	orderData.classList.add('order-data')
+	// order info
+	const orderInfo = document.createElement('div')
+	orderInfo.classList.add('order-info')
+	// order author
+	const orderAuthor = document.createElement('h4')
+	orderAuthor.classList.add('order-author')
+	orderAuthor.textContent = book.author
+	// order title
+	const orderTitle = document.createElement('h3')
+	orderTitle.classList.add('order-title')
+	orderTitle.textContent = book.title
+	// x icon
+	const xIcon = document.createElement('div')
+	xIcon.classList.add('x-icon')
+	// x button
+	const xButton = document.createElement('button')
+	xButton.innerHTML = '<i class="fa-solid fa-x"></i>'
+	xIcon.append(xButton)
+	// order full price
+	orderCost.textContent = `Total: $${(count += book.price)}`
 
-		books.appendChild(bookAuthor)
-		// book title
-		let bookTitle = document.createElement('h2')
-		bookTitle.innerHTML = book.title
-		bookTitle.className = 'catalog-title'
+	xButton.addEventListener('click', () => {
+		order.classList.add('order-disabled')
+		orderCost.textContent = `Total: $${(count -= book.price)}`
+	})
 
-		books.appendChild(bookTitle)
-		// show button
-		let showBtn = document.createElement('div')
-		showBtn.innerHTML = '<button>Show More</button>'
-		showBtn.className = 'showBtn'
+	orderContainer.append(order)
+	order.append(orderImage, orderData, xIcon)
+	orderData.append(orderInfo)
+	orderInfo.append(orderAuthor, orderTitle)
+}
 
-		// add button
-		let addBtn = document.createElement('div')
-		addBtn.innerHTML = '<button>Add to bag</button>'
-		addBtn.className = 'addBtn'
-		addBtn.addEventListener('click', addBooks.bind(null, book.id))
-		// book price
-		let bookPrice = document.createElement('h3')
-		bookPrice.innerHTML = 'Price:' + '$' + book.price
-
-		let contentWrapper = document.createElement('div')
-		contentWrapper.className = 'catalog-data'
-		contentWrapper.appendChild(bookAuthor)
-		contentWrapper.appendChild(bookTitle)
-		contentWrapper.appendChild(bookPrice)
-
-		//  create buttons
-		let buttonWrapper = document.createElement('div')
-		buttonWrapper.className = 'catalog-buttons'
-
-		buttonWrapper.appendChild(showBtn)
-		buttonWrapper.appendChild(addBtn)
-		contentWrapper.appendChild(buttonWrapper)
-		books.appendChild(contentWrapper)
-
-		bookCatalog.appendChild(books)
-		document.body.appendChild(bookCatalog)
+// getting books from api
+async function getBooks() {
+	try {
+		const response = await fetch(apiUrl)
+		bookArray = await response.json()
+		updateDOM()
+		console.log(bookArray)
+	} catch (error) {
+		console.log(error)
 	}
 }
-
-// function addBooks(data) {
-// 	addBtn.addEventListener('click', () => {
-// 		console.log(data)
-// 	})
-// }
-// order book section
-let orderedBooks = document.createElement('section')
-orderedBooks.className = 'section2'
-
-let orderTitle = document.createElement('h2')
-orderTitle.className = 'order-title'
-orderTitle.innerHTML = 'Order books'
-orderedBooks.append(orderTitle)
-
-document.body.append(orderedBooks)
-
-const books = fetch('./books.json') //path to the file with json data
-	.then(response => {
-		return response.json()
-	})
-	.then(data => {
-		showBooks(data)
-		// addBooks(data)
-	})
+getBooks()

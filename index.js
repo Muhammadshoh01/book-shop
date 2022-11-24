@@ -64,6 +64,37 @@ function updateDOM() {
 		const showBtn = document.createElement('button')
 		showBtn.classList.add('show-more')
 		showBtn.textContent = 'Show more'
+		showBtn.addEventListener('click', show.bind(null, book.id))
+		function show(id) {
+			bookArray.forEach(book => {
+				if (book.id == id) {
+					showMoreInfo(book)
+				}
+			})
+		}
+		function showMoreInfo(book) {
+			// info container
+			const infoContainer = document.createElement('div')
+			infoContainer.classList.add('info-container')
+			// info title
+			const infoTitle = document.createElement('h3')
+			infoTitle.textContent = book.title
+			infoTitle.classList.add('info-title')
+			// info title
+			const info = document.createElement('p')
+			info.textContent = book.description
+			info.classList.add('info')
+			// close button
+			const infoCloseButton = document.createElement('button')
+			infoCloseButton.classList.add('info-close')
+			infoCloseButton.textContent = 'Close'
+			infoCloseButton.addEventListener('click', () => {
+				infoContainer.classList.add('order-disabled')
+			})
+			infoContainer.append(infoTitle, info, infoCloseButton)
+			// catalog.append(infoContainer)
+			catalog.append(infoContainer)
+		}
 		// add to bag button
 		const addBtn = document.createElement('button')
 		addBtn.classList.add('add-bag')

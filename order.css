@@ -57,9 +57,20 @@ button {
 .payment-type {
 	display: flex;
 	gap: 20px;
-	margin: 15px 0;
+	margin: 0 0 15px 0;
 }
-.payment-type div {
+/* .payment-type div {
 	display: flex;
 	align-items: center;
+} */
+/* 
+.gift-1 {
+	display: flex;
+} */
+.gift-1 input,
+.payment-type input {
+	width: auto;
+}
+.payment-label {
+	margin-top: 10px;
 }
